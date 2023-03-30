@@ -25,8 +25,8 @@ jobs:
       run: |
         minikube service list
         minikube service nodejs-app --url
-        apt update
-        apt install curl -y
+        sudo apt update
+        sudo apt install curl -y
         addr=$(minikube service nodejs-app --url)
         curl $addr
 
