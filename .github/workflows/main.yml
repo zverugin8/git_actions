@@ -23,10 +23,18 @@ jobs:
       run: kubectl apply -f k8s-node-app.yaml
     - name: Test service URLs
       run: |
+        set -ex
         minikube service list
         minikube service nodejs-app --url
         sudo apt update
         sudo apt install curl -y
         addr=$(minikube service nodejs-app --url)
-        curl $addr
+        output=$(curl -s $addr)
+        if echo "$output" | grep -q "Hello World"; then
+        echo "SUCCESS"
+        else
+        echo "ERROR"
+        exit 1
+        fi
+
 
