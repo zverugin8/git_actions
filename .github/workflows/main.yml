@@ -30,7 +30,7 @@ jobs:
         sudo apt install curl -y
         addr=$(minikube service nodejs-app --url)
         output=$(curl -s $addr)
-        if echo "$output" | grep -q "Hello World"; then
+        if [[ $output == "Hello World" ]]; then
         echo "SUCCESS"
         else
         echo "ERROR"
