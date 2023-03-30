@@ -7,18 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     name: build Node.js Docker Image and deploy to minikube
     steps:
-    - uses: actions/checkout@v2
-    - name: Start minikube
-      uses: medyagh/setup-minikube@master
-    - name: Try the cluster !
-      run: kubectl get pods -A
+    # - uses: actions/checkout@v2
+    # - name: Start minikube
+    #   uses: medyagh/setup-minikube@master
+    # - name: Try the cluster !
+    #   run: kubectl get pods -A
     - name: Login to Docker registry
-      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    - name: Build image
-      run: "export SHELL=/bin/bash\neval $(minikube -p minikube docker-env)\ndocker build -f ./Dockerfile -t siarheisaroka/node-app:latest .\ndocker push\necho -n \"verifying images:\"\ndocker images         \n"
-    - name: Deploy to minikube
-      run: kubectl apply -f k8s-node-app.yaml
-    - name: Test service URLs
-      run: |
-        minikube service list
-        minikube service nodejs-app --url
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} --password-stdin
+    # - name: Build image
+    #   run: "export SHELL=/bin/bash\neval $(minikube -p minikube docker-env)\ndocker build -f ./Dockerfile -t siarheisaroka/node-app:latest .\ndocker push\necho -n \"verifying images:\"\ndocker images         \n"
+    # - name: Deploy to minikube
+    #   run: kubectl apply -f k8s-node-app.yaml
+    # - name: Test service URLs
+    #   run: |
+    #     minikube service list
+    #     minikube service nodejs-app --url
