@@ -1,2 +1,2 @@
 # git_actions
-[![pipeline status](https://gitlab.com/zverugin8/git_actions/badges/master/pipeline.svg)](https://gitlab.com/zverugin8/git_actions/commits/master)
+![example workflow](https://github.com/zverugin8/git_actions/actions/workflows/main.yaml/badge.svg)
